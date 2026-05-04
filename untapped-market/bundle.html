@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untapped Market — PNW Cannabis Discovery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --bg: #0e0f0d;
+      --bg2: #141510;
+      --surface: #1f211a;
+      --surface2: #252720;
+      --border: #2e3028;
+      --border2: #3a3d32;
+      --text: #e8e6df;
+      --text2: #a8a69e;
+      --text3: #6b6960;
+      --accent: #7cb87a;
+      --accent2: #5a9e58;
+      --amber: #d4a853;
+      --amber2: #b8913e;
+      --red: #d4564e;
+      --teal: #4a9b9e;
+      --purple: #8b6fb8;
+      --radius: 10px;
+      --shadow: 0 2px 16px rgba(0,0,0,.45);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 58px;
+      background: rgba(14,15,13,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      gap: 0;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+      margin-right: auto;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .nav-link {
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text2);
+      cursor: pointer;
+      border: none;
+      background: none;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-link:hover { color: var(--text); background: var(--surface); }
+    .nav-link.active { color: var(--accent); background: rgba(124,184,122,.12); }
+    .nav-link.premium { color: var(--amber); }
+    .nav-link.premium:hover { background: rgba(212,168,83,.12); }
+    .nav-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--accent2);
+      color: var(--bg);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    /* ===== PAGE SHELL ===== */
+    .page { padding-top: 58px; min-height: 100vh; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(160deg, #111410 0%, #0e0f0d 60%);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(124,184,122,.1);
+      border: 1px solid rgba(124,184,122,.25);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.12;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { color: var(--accent); font-style: italic; }
+    .hero-sub {
+      color: var(--text2);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 2rem;
+    }
+    .hero-search {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      gap: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border2);
+      background: var(--surface);
+    }
+    .hero-search input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      padding: 0.75rem 1.1rem;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+    }
+    .hero-search input::placeholder { color: var(--text3); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+    .btn-primary { background: var(--accent); color: #0a1409; }
+    .btn-primary:hover { background: var(--accent2); }
+    .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border2); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-amber { background: var(--amber); color: #1a0f00; }
+    .btn-amber:hover { background: var(--amber2); }
+    .btn-ghost { background: transparent; color: var(--text2); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--border2); color: var(--text); }
+    .btn-sm { padding: 0.4rem 0.85rem; font-size: 0.8rem; }
+    .btn-danger { background: var(--red); color: #fff; }
+
+    .hero-pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    @media (max-width: 640px) {
+      .hero-pillars { grid-template-columns: 1fr 1fr; }
+    }
+    .pillar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    .pillar-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .pillar-card h3 { font-size: 0.8rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .pillar-card p { font-size: 0.72rem; color: var(--text3); line-height: 1.4; }
+
+    /* ===== SECTIONS ===== */
+    .section { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.6rem;
+      color: var(--text);
+    }
+    .section-link {
+      font-size: 0.8rem;
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      border: none;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .section-link:hover { color: var(--accent2); }
+
+    /* ===== STRAIN CARD ===== */
+    .strain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .strain-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .strain-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+    .strain-card-top {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .strain-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      border-radius: 20px;
+    }
+    .badge-indica { background: #2d1a4a; color: #c084fc; }
+    .badge-sativa { background: #1a3d1a; color: #86efac; }
+    .badge-hybrid { background: #3d2d1a; color: #fcd34d; }
+    .badge-cbd { background: #1a2d3d; color: #93c5fd; }
+    .badge-accent { background: rgba(124,184,122,.15); color: var(--accent); }
+    .badge-amber { background: rgba(212,168,83,.15); color: var(--amber); }
+    .badge-teal { background: rgba(74,155,158,.15); color: var(--teal); }
+
+    .bookmark-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text3);
+      font-size: 1.1rem;
+      transition: color 0.15s;
+      line-height: 1;
+    }
+    .bookmark-btn:hover { color: var(--amber); }
+    .bookmark-btn.bookmarked { color: var(--amber); }
+
+    .strain-name {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .strain-desc {
+      font-size: 0.82rem;
+      color: var(--text2);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .strain-stats {
+      display: flex;
+      gap: 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+    }
+    .stat-item { color: var(--text3); }
+    .stat-item span { color: var(--text); font-weight: 500; }
+    .terpene-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .terpene-pill {
+      font-size: 0.68rem;
+      padding: 0.15rem 0.5rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text3);
+    }
+    .effect-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .effect-tag {
+      font-size: 0.68rem;
+      padding: 0.15rem 0.5rem;
+      background: rgba(124,184,122,.08);
+      border: 1px solid rgba(124,184,122,.2);
+      border-radius: 20px;
+      color: var(--accent);
+    }
+    .card-footer {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--accent);
+      cursor: pointer;
+    }
+    .card-footer:hover { text-decoration: underline; }
+
+    /* ===== SPOTLIGHT ===== */
+    .spotlight {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .spotlight-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      text-align: left;
+    }
+    @media (max-width: 640px) { .spotlight-inner { grid-template-columns: 1fr; gap: 1.5rem; } }
+    .spotlight h2 {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .spotlight p { color: var(--text2); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-block { padding: 1rem; background: var(--surface2); border-radius: var(--radius); border: 1px solid var(--border); }
+    .stat-block .num {
+      font-family: 'DM Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .stat-block .label { font-size: 0.72rem; color: var(--text3); }
+
+    /* ===== CATALOG PAGE ===== */
+    .catalog-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    @media (max-width: 768px) { .catalog-layout { grid-template-columns: 1fr; } }
+    .catalog-sidebar {
+      position: sticky;
+      top: 78px;
+      height: fit-content;
+    }
+    .filter-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .filter-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 1rem;
+    }
+    .filter-group { margin-bottom: 1.25rem; }
+    .filter-group-label { font-size: 0.78rem; font-weight: 600; color: var(--text2); margin-bottom: 0.5rem; }
+    .filter-input {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .filter-input:focus { border-color: var(--accent); }
+    .filter-input::placeholder { color: var(--text3); }
+    select.filter-input { cursor: pointer; }
+    .type-tabs {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .type-tab {
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--text2);
+      transition: all 0.15s;
+    }
+    .type-tab.active { border-color: var(--accent); color: var(--accent); background: rgba(124,184,122,.1); }
+    .slider-wrap { display: flex; flex-direction: column; gap: 0.4rem; }
+    .slider-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text3); }
+    input[type=range] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+    .results-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .results-count { font-size: 0.82rem; color: var(--text3); }
+
+    /* ===== DETAIL PAGE ===== */
+    .detail-page { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .detail-hero {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 768px) { .detail-hero { grid-template-columns: 1fr; } }
+    .detail-hero-main {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+    .detail-hero-sidebar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .detail-name {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--text);
+      margin: 0.75rem 0 0.5rem;
+    }
+    .detail-desc { color: var(--text2); font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.5rem; }
+    .detail-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .sidebar-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 0.5rem;
+    }
+    .potency-bar-wrap { margin-bottom: 1rem; }
+    .potency-bar-bg {
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 0.3rem;
+    }
+    .potency-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .potency-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text3);
+      margin-top: 0.2rem;
+      font-family: 'DM Mono', monospace;
+    }
+    .sidebar-section { margin-bottom: 1.25rem; }
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+    /* ===== SECTION CARD ===== */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-card h2 {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ===== TERPENE CHART ===== */
+    .terpene-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 90px;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .terpene-name { font-size: 0.85rem; font-weight: 500; color: var(--text2); }
+    .terpene-effect { font-size: 0.7rem; color: var(--text3); }
+    .terpene-bar-bg { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .terpene-bar-fill { height: 100%; border-radius: 4px; background: var(--accent); transition: width 0.6s ease; }
+    .terpene-pct { font-family: 'DM Mono', monospace; font-size: 0.78rem; color: var(--text2); text-align: right; }
+
+    /* ===== LINEAGE ===== */
+    .lineage-tree {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .lineage-parents { display: flex; flex-direction: column; gap: 1rem; }
+    .lineage-node {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 0.75rem 1.25rem;
+      font-size: 0.85rem;
+    }
+    .lineage-node.offspring {
+      border-width: 2px;
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+    .lineage-node.unknown { color: var(--text3); border-style: dashed; }
+    .lineage-connector { font-size: 1.2rem; color: var(--text3); }
+
+    /* ===== LAB CERT ===== */
+    .lab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+    .lab-cell {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .lab-cell-name { font-size: 0.72rem; color: var(--text3); margin-bottom: 0.2rem; }
+    .lab-cell-val { font-family: 'DM Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--text); }
+
+    /* ===== DISPENSARY CARD ===== */
+    .dispensary-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .dispensary-row-info { flex: 1; min-width: 200px; }
+    .dispensary-row-name { font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+    .dispensary-row-meta { font-size: 0.8rem; color: var(--text3); }
+    .dispensary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .dispensary-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    .dispensary-name { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 1.2rem; color: var(--text); }
+    .dispensary-meta { font-size: 0.8rem; color: var(--text3); margin-bottom: 0.5rem; }
+    .rating { font-size: 0.82rem; color: var(--amber); font-weight: 600; }
+    .strain-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+    .strain-chip {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      color: var(--text2);
+      cursor: pointer;
+    }
+    .strain-chip:hover { color: var(--accent); border-color: var(--accent); }
+    .dispensary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    /* ===== MAP PLACEHOLDER ===== */
+    .map-placeholder {
+      height: 260px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      color: var(--text3);
+      margin-bottom: 1.5rem;
+    }
+    .map-placeholder .map-icon { font-size: 2.5rem; }
+    .map-placeholder p { font-size: 0.85rem; }
+
+    /* ===== TRIP REPORTS ===== */
+    .trip-report {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .report-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+    .report-user { font-weight: 600; font-size: 0.9rem; }
+    .report-meta { font-size: 0.75rem; color: var(--text3); }
+    .report-note { font-size: 0.88rem; color: var(--text2); margin: 0.5rem 0; line-height: 1.55; }
+    .stars { color: var(--amber); font-size: 0.9rem; }
+    .vote-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      color: var(--text3);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .vote-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .report-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-label { font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-bottom: 0.4rem; display: block; }
+    .form-textarea {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      resize: vertical;
+      outline: none;
+    }
+    .form-textarea:focus { border-color: var(--accent); }
+    .method-select { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .method-btn {
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--text2);
+      transition: all 0.15s;
+    }
+    .method-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(124,184,122,.1); }
+    .star-select { display: flex; gap: 0.25rem; }
+    .star-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--border2);
+      transition: color 0.1s;
+    }
+    .star-btn.lit { color: var(--amber); }
+
+    /* ===== FINDER PAGE ===== */
+    .finder-page { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .state-filter { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+
+    /* ===== LIBRARY PAGE ===== */
+    .library-page { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .library-header { margin-bottom: 2rem; }
+    .library-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+    .premium-nudge {
+      background: linear-gradient(135deg, rgba(212,168,83,.08), rgba(212,168,83,.03));
+      border: 1px solid rgba(212,168,83,.25);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .premium-nudge .nudge-icon { font-size: 1.5rem; }
+    .premium-nudge .nudge-text { flex: 1; }
+    .premium-nudge .nudge-text h3 { font-size: 0.95rem; font-weight: 600; color: var(--amber); margin-bottom: 0.2rem; }
+    .premium-nudge .nudge-text p { font-size: 0.82rem; color: var(--text2); }
+    .empty-library {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--text3);
+    }
+    .empty-library .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty-library h2 { font-size: 1.2rem; color: var(--text2); margin-bottom: 0.5rem; }
+    .empty-library p { font-size: 0.88rem; }
+
+    /* ===== EXPLORE PAGE ===== */
+    .explore-page { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .media-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .media-card:hover { border-color: var(--border2); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .media-thumb {
+      height: 160px;
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+    .media-body { padding: 1rem; }
+    .media-category { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+    .media-title { font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.3; margin-bottom: 0.4rem; }
+    .media-meta { font-size: 0.75rem; color: var(--text3); }
+    .spotlight-scroll {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .spotlight-scroll::-webkit-scrollbar { height: 4px; }
+    .spotlight-scroll::-webkit-scrollbar-track { background: var(--border); border-radius: 2px; }
+    .spotlight-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+    .spotlight-pill {
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.15s;
+      min-width: 180px;
+    }
+    .spotlight-pill:hover { border-color: var(--accent); }
+    .spotlight-pill .pill-name { font-weight: 600; font-size: 0.9rem; color: var(--text); margin-bottom: 0.2rem; }
+    .spotlight-pill .pill-sub { font-size: 0.72rem; color: var(--text3); }
+
+    /* ===== PREMIUM PAGE ===== */
+    .premium-page { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .premium-hero { text-align: center; padding: 2rem 0 3rem; }
+    .premium-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+    .premium-hero h1 em { color: var(--amber); }
+    .premium-hero p { color: var(--text2); max-width: 480px; margin: 0 auto 2rem; }
+    .premium-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .premium-layout { grid-template-columns: 1fr; } }
+    .feature-list { display: flex; flex-direction: column; gap: 1rem; }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+    }
+    .feature-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .feature-title { font-weight: 600; font-size: 0.95rem; color: var(--text); margin-bottom: 0.25rem; }
+    .feature-desc { font-size: 0.82rem; color: var(--text2); }
+    .pricing-card {
+      background: var(--surface);
+      border: 2px solid var(--amber);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: sticky;
+      top: 78px;
+    }
+    .pricing-amount {
+      font-family: 'DM Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--amber);
+    }
+    .pricing-period { font-size: 0.85rem; color: var(--text3); }
+    .pricing-divider { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .pricing-features li { font-size: 0.85rem; color: var(--text2); display: flex; gap: 0.5rem; align-items: flex-start; }
+    .pricing-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+    .compare-table th { font-size: 0.8rem; font-weight: 600; color: var(--text3); text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .compare-table td { font-size: 0.85rem; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border); color: var(--text2); }
+    .compare-table td:nth-child(2) { text-align: center; }
+    .compare-table td:nth-child(3) { text-align: center; color: var(--amber); }
+    .check { color: var(--accent); }
+    .cross { color: var(--text3); }
+
+    /* ===== TOAST ===== */
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      pointer-events: none;
+    }
+    .toast {
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 0.75rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text);
+      box-shadow: var(--shadow);
+      opacity: 1;
+      transition: opacity 0.3s;
+      pointer-events: auto;
+    }
+    .toast.fade { opacity: 0; }
+
+    /* ===== BACK BUTTON ===== */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text2);
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      margin-bottom: 1.5rem;
+      transition: color 0.15s;
+    }
+    .back-btn:hover { color: var(--accent); }
+
+    /* ===== UTILS ===== */
+    .text-accent { color: var(--accent); }
+    .text-amber { color: var(--amber); }
+    .text-muted { color: var(--text3); }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+    .flex { display: flex; }
+    .gap-sm { gap: 0.5rem; }
+    .items-center { align-items: center; }
+    .flex-wrap { flex-wrap: wrap; }
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mb-1 { margin-bottom: 0.5rem; }
+    .w-full { width: 100%; }
+
+    /* ===== PAGE HEADER ===== */
+    .page-header {
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 2rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .page-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .page-header p { font-size: 0.9rem; color: var(--text2); }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel" data-presets="react">
+    const { useState, useMemo, useCallback, useEffect, useRef } = React;
+
+    /* ===================================================
+       DATA STORE
+    =================================================== */
+    const STRAINS = [
+      {
+        id: 'cascadia-haze',
+        name: 'Cascadia Haze',
+        type: 'sativa',
+        thc: 23.4,
+        cbd: 0.2,
+        chemotype: 'Type I (THC-dominant)',
+        description: 'A bright, cerebral sativa born in the foggy lowlands of the Cascades. Cascadia Haze carries the sharp citrus snap of Pacific air with a golden morning energy that keeps creative momentum flowing without the crash.',
+        terpenes: [
+          { name: 'Terpinolene', pct: 1.42, effect: 'Uplifting' },
+          { name: 'Myrcene', pct: 0.98, effect: 'Relaxing' },
+          { name: 'Ocimene', pct: 0.76, effect: 'Energizing' },
+          { name: 'Caryophyllene', pct: 0.54, effect: 'Anti-inflammatory' },
+        ],
+        effects: ['Euphoric', 'Creative', 'Focused', 'Energetic'],
+        flavors: ['Citrus', 'Pine', 'Floral', 'Earthy'],
+        lineage: { mother: 'Haze', father: 'Pacific Ghost' },
+        labData: {
+          lab: 'Confidence Analytics',
+          date: '2025-10-14',
+          cannabinoids: [
+            { name: 'THC', value: '23.4%' },
+            { name: 'THCA', value: '26.2%' },
+            { name: 'CBD', value: '0.2%' },
+            { name: 'CBDA', value: '0.3%' },
+            { name: 'CBG', value: '0.9%' },
+            { name: 'CBN', value: '0.1%' },
+            { name: 'CBC', value: '0.4%' },
+            { name: 'THCV', value: '0.3%' },
+          ],
+        },
+        dispensaryIds: ['green-needle', 'cascadia-collective'],
+        likeCount: 847,
+        color: '#d4a853',
+      },
+      {
+        id: 'rainier-kush',
+        name: 'Rainier Kush',
+        type: 'indica',
+        thc: 28.1,
+        cbd: 0.1,
+        chemotype: 'Type I (THC-dominant)',
+        description: 'Named for the mountain that watches over the Puget Sound, Rainier Kush is a heavy, earthen indica with the deep resin of old-growth forest. Expect a full-body release and a long, peaceful night.',
+        terpenes: [
+          { name: 'Myrcene', pct: 1.85, effect: 'Sedating' },
+          { name: 'Linalool', pct: 1.12, effect: 'Calming' },
+          { name: 'Caryophyllene', pct: 0.89, effect: 'Anti-inflammatory' },
+          { name: 'Humulene', pct: 0.67, effect: 'Appetite suppressant' },
+        ],
+        effects: ['Relaxed', 'Sleepy', 'Happy', 'Hungry'],
+        flavors: ['Earthy', 'Pine', 'Diesel', 'Grape'],
+        lineage: { mother: 'OG Kush', father: 'Skywalker' },
+        labData: {
+          lab: 'Trace Analytics',
+          date: '2025-11-02',
+          cannabinoids: [
+            { name: 'THC', value: '28.1%' },
+            { name: 'THCA', value: '31.5%' },
+            { name: 'CBD', value: '0.1%' },
+            { name: 'CBDA', value: '0.1%' },
+            { name: 'CBG', value: '0.7%' },
+            { name: 'CBN', value: '0.4%' },
+            { name: 'CBC', value: '0.2%' },
+            { name: 'THCV', value: '0.1%' },
+          ],
+        },
+        dispensaryIds: ['green-needle', 'rainforest-remedies'],
+        likeCount: 1204,
+        color: '#8b6fb8',
+      },
+      {
+        id: 'hood-river-haze',
+        name: 'Hood River Haze',
+        type: 'hybrid',
+        thc: 19.7,
+        cbd: 0.5,
+        chemotype: 'Type I (THC-dominant)',
+        description: 'A balanced hybrid born at the intersection of river valley and volcanic ridge. Hood River Haze opens with a sativa clarity and settles into a mellow indica warmth — ideal for the long PNW evening.',
+        terpenes: [
+          { name: 'Limonene', pct: 1.23, effect: 'Mood elevation' },
+          { name: 'Pinene', pct: 0.95, effect: 'Alertness' },
+          { name: 'Myrcene', pct: 0.78, effect: 'Relaxing' },
+          { name: 'Terpinolene', pct: 0.54, effect: 'Uplifting' },
+        ],
+        effects: ['Happy', 'Creative', 'Relaxed', 'Talkative'],
+        flavors: ['Lemon', 'Apple', 'Spice', 'Floral'],
+        lineage: { mother: 'Cascadia Haze', father: 'Oregon OG' },
+        labData: {
+          lab: 'Green Leaf Lab',
+          date: '2025-09-28',
+          cannabinoids: [
+            { name: 'THC', value: '19.7%' },
+            { name: 'THCA', value: '22.3%' },
+            { name: 'CBD', value: '0.5%' },
+            { name: 'CBDA', value: '0.6%' },
+            { name: 'CBG', value: '1.1%' },
+            { name: 'CBN', value: '0.2%' },
+            { name: 'CBC', value: '0.6%' },
+            { name: 'THCV', value: '0.2%' },
+          ],
+        },
+        dispensaryIds: ['cascadia-collective', 'gorge-greens'],
+        likeCount: 632,
+        color: '#7cb87a',
+      },
+      {
+        id: 'olympic-fog',
+        name: 'Olympic Fog',
+        type: 'hybrid',
+        thc: 22.8,
+        cbd: 0.3,
+        chemotype: 'Type I (THC-dominant)',
+        description: 'Inspired by the perpetual mist rolling off the Olympic Peninsula, this dense hybrid wraps you in calm focus. The terpene stack leans coastal — briney, herbal, and slightly sweet.',
+        terpenes: [
+          { name: 'Caryophyllene', pct: 1.56, effect: 'Stress relief' },
+          { name: 'Linalool', pct: 0.94, effect: 'Calming' },
+          { name: 'Myrcene', pct: 0.82, effect: 'Relaxing' },
+          { name: 'Bisabolol', pct: 0.41, effect: 'Anti-anxiety' },
+        ],
+        effects: ['Relaxed', 'Calm', 'Focused', 'Happy'],
+        flavors: ['Herbal', 'Lavender', 'Sweet', 'Woody'],
+        lineage: { mother: 'Cookies', father: 'Blue Dream' },
+        labData: {
+          lab: 'Confidence Analytics',
+          date: '2025-10-30',
+          cannabinoids: [
+            { name: 'THC', value: '22.8%' },
+            { name: 'THCA', value: '25.5%' },
+            { name: 'CBD', value: '0.3%' },
+            { name: 'CBDA', value: '0.4%' },
+            { name: 'CBG', value: '0.8%' },
+            { name: 'CBN', value: '0.2%' },
+            { name: 'CBC', value: '0.5%' },
+            { name: 'THCV', value: '0.1%' },
+          ],
+        },
+        dispensaryIds: ['rainforest-remedies', 'green-needle'],
+        likeCount: 489,
+        color: '#4a9b9e',
+      },
+      {
+        id: 'puget-sound-cbd',
+        name: 'Puget Sound CBD',
+        type: 'hybrid',
+        thc: 1.2,
+        cbd: 18.5,
+        chemotype: 'Type II (Balanced CBD/THC)',
+        description: 'A high-CBD cultivar crafted for the wellness-focused cannabis consumer. Puget Sound CBD delivers calm clarity without intoxication — perfect for daytime relief, anxiety management, or anyone new to cannabis.',
+        terpenes: [
+          { name: 'Myrcene', pct: 1.14, effect: 'Relaxing' },
+          { name: 'Pinene', pct: 0.88, effect: 'Alertness' },
+          { name: 'Linalool', pct: 0.73, effect: 'Calming' },
+          { name: 'Humulene', pct: 0.52, effect: 'Anti-inflammatory' },
+        ],
+        effects: ['Calm', 'Clear-headed', 'Focused', 'Pain relief'],
+        flavors: ['Earthy', 'Pine', 'Floral', 'Herbal'],
+        lineage: { mother: 'ACDC', father: null },
+        labData: {
+          lab: 'Trace Analytics',
+          date: '2025-11-15',
+          cannabinoids: [
+            { name: 'THC', value: '1.2%' },
+            { name: 'THCA', value: '1.4%' },
+            { name: 'CBD', value: '18.5%' },
+            { name: 'CBDA', value: '20.8%' },
+            { name: 'CBG', value: '0.4%' },
+            { name: 'CBN', value: '0.1%' },
+            { name: 'CBC', value: '0.8%' },
+            { name: 'THCV', value: '0.0%' },
+          ],
+        },
+        dispensaryIds: ['cascadia-collective', 'rainforest-remedies'],
+        likeCount: 341,
+        color: '#4a9b9e',
+      },
+      {
+        id: 'willamette-valley-og',
+        name: 'Willamette Valley OG',
+        type: 'indica',
+        thc: 26.3,
+        cbd: 0.1,
+        chemotype: 'Type I (THC-dominant)',
+        description: 'Born in the fertile agricultural valley between the Coast Range and the Cascades. Willamette Valley OG is a bold, resinous indica with notes of fuel and dark fruit. Heavy hitting — for veterans who want the full experience.',
+        terpenes: [
+          { name: 'Myrcene', pct: 2.01, effect: 'Sedating' },
+          { name: 'Caryophyllene', pct: 1.34, effect: 'Anti-inflammatory' },
+          { name: 'Limonene', pct: 0.67, effect: 'Mood elevation' },
+          { name: 'Linalool', pct: 0.45, effect: 'Calming' },
+        ],
+        effects: ['Sedated', 'Relaxed', 'Euphoric', 'Hungry'],
+        flavors: ['Diesel', 'Grape', 'Berry', 'Earthy'],
+        lineage: { mother: 'SFV OG', father: 'Bubba Kush' },
+        labData: {
+          lab: 'Green Leaf Lab',
+          date: '2025-10-05',
+          cannabinoids: [
+            { name: 'THC', value: '26.3%' },
+            { name: 'THCA', value: '29.7%' },
+            { name: 'CBD', value: '0.1%' },
+            { name: 'CBDA', value: '0.2%' },
+            { name: 'CBG', value: '0.6%' },
+            { name: 'CBN', value: '0.5%' },
+            { name: 'CBC', value: '0.3%' },
+            { name: 'THCV', value: '0.1%' },
+          ],
+        },
+        dispensaryIds: ['gorge-greens', 'cascadia-collective'],
+        likeCount: 756,
+        color: '#8b6fb8',
+      },
+    ];
+
+    const DISPENSARIES = [
+      {
+        id: 'green-needle',
+        name: 'Green Needle Cannabis',
+        address: '1847 15th Ave E',
+        city: 'Seattle',
+        state: 'WA',
+        coordinates: { lat: 47.6219, lng: -122.3080 },
+        hours: 'Mon–Sat 9am–10pm · Sun 10am–8pm',
+        phone: '(206) 555-0142',
+        strainIds: ['cascadia-haze', 'rainier-kush', 'olympic-fog'],
+        rating: 4.8,
+      },
+      {
+        id: 'cascadia-collective',
+        name: 'Cascadia Collective',
+        address: '2241 NE Alberta St',
+        city: 'Portland',
+        state: 'OR',
+        coordinates: { lat: 45.5580, lng: -122.6393 },
+        hours: 'Daily 8am–11pm',
+        phone: '(503) 555-0287',
+        strainIds: ['cascadia-haze', 'hood-river-haze', 'puget-sound-cbd', 'willamette-valley-og'],
+        rating: 4.9,
+      },
+      {
+        id: 'rainforest-remedies',
+        name: 'Rainforest Remedies',
+        address: '420 4th Ave E',
+        city: 'Olympia',
+        state: 'WA',
+        coordinates: { lat: 47.0432, lng: -122.9007 },
+        hours: 'Mon–Sat 10am–9pm · Sun 11am–7pm',
+        phone: '(360) 555-0318',
+        strainIds: ['rainier-kush', 'olympic-fog', 'puget-sound-cbd'],
+        rating: 4.7,
+      },
+      {
+        id: 'gorge-greens',
+        name: 'Gorge Greens',
+        address: '312 Oak St',
+        city: 'Hood River',
+        state: 'OR',
+        coordinates: { lat: 45.7131, lng: -121.5195 },
+        hours: 'Daily 9am–9pm',
+        phone: '(541) 555-0463',
+        strainIds: ['hood-river-haze', 'willamette-valley-og'],
+        rating: 4.6,
+      },
+    ];
+
+    const TRIP_REPORTS = [
+      {
+        id: 'tr-001',
+        strainId: 'cascadia-haze',
+        userId: 'u-emeraldcity88',
+        username: 'emeraldcity88',
+        rating: 5,
+        effects: ['Euphoric', 'Creative', 'Focused'],
+        method: 'flower',
+        note: 'Perfect Saturday morning strain. Two bowls and I spent four hours painting — best creative session I have had in months. The citrus is unmistakable on the inhale. Zero anxiety, just pure headspace.',
+        upvotes: 142,
+        downvotes: 3,
+        createdAt: '2025-10-22',
+      },
+      {
+        id: 'tr-002',
+        strainId: 'cascadia-haze',
+        userId: 'u-mthood-rider',
+        username: 'mthood_rider',
+        rating: 4,
+        effects: ['Energetic', 'Creative'],
+        method: 'vape',
+        note: 'Great for daytime use on the mountain. Clear-headed high with good energy. Lasted about 2 hours via vape. Slight dry mouth but manageable. Would buy again for active sessions.',
+        upvotes: 87,
+        downvotes: 8,
+        createdAt: '2025-11-01',
+      },
+      {
+        id: 'tr-003',
+        strainId: 'cascadia-haze',
+        userId: 'u-pnwpetals',
+        username: 'pnwpetals',
+        rating: 5,
+        effects: ['Euphoric', 'Happy', 'Talkative'],
+        method: 'flower',
+        note: 'My go-to for social situations. Not overwhelming, just opens you up. The terpene profile is genuinely complex — I taste the terpinolene and ocimene clearly. Lab cert checks out with what Confidence Analytics reported.',
+        upvotes: 210,
+        downvotes: 5,
+        createdAt: '2025-11-10',
+      },
+    ];
+
+    const MOCK_USER = {
+      id: 'u-currentuser',
+      username: 'pnw_explorer',
+      tier: 'free',
+    };
+
+    const MEDIA_ITEMS = [
+      { id: 'm1', category: 'Science', title: 'How Terpinolene Shapes the Sativa Experience', thumb: '🔬', date: 'Nov 14' },
+      { id: 'm2', category: 'PNW', title: 'Inside the Gorge: Hood River\'s Growing Scene', thumb: '🏔️', date: 'Nov 12' },
+      { id: 'm3', category: 'How-To', title: 'Reading a Lab Certificate of Analysis', thumb: '📋', date: 'Nov 10' },
+      { id: 'm4', category: 'Terpenes', title: 'Myrcene vs. Linalool: The Calming Duo Explained', thumb: '🌿', date: 'Nov 8' },
+      { id: 'm5', category: 'Science', title: 'Genetic Lineage and Why It Predicts Your High', thumb: '🧬', date: 'Nov 6' },
+      { id: 'm6', category: 'PNW', title: 'Oregon\'s Craft Cannabis Farmers: A Visual Story', thumb: '🌲', date: 'Nov 4' },
+      { id: 'm7', category: 'How-To', title: 'Building Your Personal Strain Library', thumb: '📚', date: 'Nov 2' },
+      { id: 'm8', category: 'Terpenes', title: 'Caryophyllene: The Terpene That Acts Like a Cannabinoid', thumb: '⚗️', date: 'Oct 30' },
+    ];
+
+    /* ===================================================
+       UTILITY
+    =================================================== */
+    function typeBadgeClass(type) {
+      if (type === 'indica') return 'badge badge-indica';
+      if (type === 'sativa') return 'badge badge-sativa';
+      return 'badge badge-hybrid';
+    }
+
+    function stars(n) {
+      return '★'.repeat(n) + '☆'.repeat(5 - n);
+    }
+
+    /* ===================================================
+       TOAST
+    =================================================== */
+    function ToastContainer({ toasts }) {
+      return (
+        <div className="toast-container">
+          {toasts.map(t => (
+            <div key={t.id} className={`toast${t.fading ? ' fade' : ''}`}>{t.msg}</div>
+          ))}
+        </div>
+      );
+    }
+
+    /* ===================================================
+       NAV
+    =================================================== */
+    function Nav({ route, navigate }) {
+      const links = [
+        { id: 'explore', label: 'Explore' },
+        { id: 'catalog', label: 'Strains' },
+        { id: 'finder', label: 'Finder' },
+        { id: 'library', label: 'Library' },
+      ];
+      return (
+        <nav className="nav">
+          <div className="nav-logo" onClick={() => navigate({ page: 'home' })}>
+            <span className="nav-logo-mark">⟠</span>
+            Untapped Market
+          </div>
+          <div className="nav-links">
+            {links.map(l => (
+              <button
+                key={l.id}
+                className={`nav-link${route.page === l.id ? ' active' : ''}`}
+                onClick={() => navigate({ page: l.id })}
+              >
+                {l.label}
+              </button>
+            ))}
+            <button
+              className={`nav-link premium${route.page === 'premium' ? ' active' : ''}`}
+              onClick={() => navigate({ page: 'premium' })}
+            >
+              ✦ Premium
+            </button>
+          </div>
+          <div className="nav-avatar">{MOCK_USER.username[0].toUpperCase()}</div>
+        </nav>
+      );
+    }
+
+    /* ===================================================
+       STRAIN CARD
+    =================================================== */
+    function StrainCard({ strain, bookmarks, setBookmarks, navigate, toast }) {
+      const isBookmarked = bookmarks.has(strain.id);
+      function toggleBookmark(e) {
+        e.stopPropagation();
+        const next = new Set(bookmarks);
+        if (isBookmarked) {
+          next.delete(strain.id);
+          toast('Removed from library');
+        } else {
+          next.add(strain.id);
+          toast('Saved to library ✓');
+        }
+        setBookmarks(next);
+      }
+      return (
+        <div className="strain-card" onClick={() => navigate({ page: 'strain', id: strain.id })}>
+          <div className="strain-card-top">
+            <div className="strain-dot" style={{ background: strain.color }} />
+            <span className={typeBadgeClass(strain.type)}>{strain.type}</span>
+            <button className={`bookmark-btn${isBookmarked ? ' bookmarked' : ''}`} onClick={toggleBookmark} aria-label="Bookmark strain">
+              {isBookmarked ? '♥' : '♡'}
+            </button>
+          </div>
+          <div className="strain-name">{strain.name}</div>
+          <div className="strain-desc">{strain.description}</div>
+          <div className="strain-stats">
+            <span className="stat-item">THC <span>{strain.thc}%</span></span>
+            <span className="stat-item">CBD <span>{strain.cbd}%</span></span>
+            <span className="stat-item">♥ <span>{strain.likeCount.toLocaleString()}</span></span>
+          </div>
+          <div className="terpene-pills">
+            {strain.terpenes.slice(0, 2).map(t => (
+              <span key={t.name} className="terpene-pill">{t.name}</span>
+            ))}
+          </div>
+          <div className="effect-tags">
+            {strain.effects.slice(0, 3).map(e => (
+              <span key={e} className="effect-tag">{e}</span>
+            ))}
+          </div>
+          <div className="card-footer">View Details →</div>
+        </div>
+      );
+    }
+
+    /* ===================================================
+       HOME PAGE
+    =================================================== */
+    function HomePage({ navigate, bookmarks, setBookmarks, toast }) {
+      const [search, setSearch] = useState('');
+      const staffPicks = STRAINS.slice(0, 3);
+      const trending = [...STRAINS].sort((a, b) => b.likeCount - a.likeCount).slice(0, 3);
+
+      function handleSearch(e) {
+        e.preventDefault();
+        navigate({ page: 'catalog', query: search });
+      }
+
+      return (
+        <div className="page">
+          <div className="hero">
+            <div className="hero-eyebrow">PNW Cannabis Intelligence</div>
+            <h1>Know what's in your<br /><em>next session.</em></h1>
+            <p className="hero-sub">DNA-level strain data, terpene science, and dispensary inventory — unified for Pacific Northwest cannabis consumers.</p>
+            <form className="hero-search" onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="Search strains, terpenes, effects…"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+              />
+              <button type="submit" className="btn btn-primary" style={{ borderRadius: 0 }}>Search</button>
+            </form>
+            <div className="hero-pillars">
+              <div className="pillar-card">
+                <div className="pillar-icon">🧬</div>
+                <h3>Genetic Data</h3>
+                <p>Lineage trees and DNA-level profiles</p>
+              </div>
+              <div className="pillar-card">
+                <div className="pillar-icon">🌲</div>
+                <h3>PNW-First</h3>
+                <p>Washington & Oregon only</p>
+              </div>
+              <div className="pillar-card">
+                <div className="pillar-icon">🔬</div>
+                <h3>Lab Verified</h3>
+                <p>Real COA data, not marketing copy</p>
+              </div>
+              <div className="pillar-card">
+                <div className="pillar-icon">📍</div>
+                <h3>In Stock</h3>
+                <p>Live dispensary inventory links</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Staff Picks</h2>
+              <button className="section-link" onClick={() => navigate({ page: 'catalog' })}>View all strains →</button>
+            </div>
+            <div className="strain-grid">
+              {staffPicks.map(s => (
+                <StrainCard key={s.id} strain={s} bookmarks={bookmarks} setBookmarks={setBookmarks} navigate={navigate} toast={toast} />
+              ))}
+            </div>
+          </div>
+
+          <div className="spotlight">
+            <div className="spotlight-inner">
+              <div>
+                <h2>Built for the Pacific Northwest.</h2>
+                <p>We focus exclusively on WA and OR — the two most mature legal markets on the West Coast. Every strain, every dispensary, every lab cert comes from within the region.</p>
+                <button className="btn btn-secondary" onClick={() => navigate({ page: 'finder' })}>Find dispensaries near you</button>
+              </div>
+              <div className="stats-grid">
+                <div className="stat-block"><div className="num">200+</div><div className="label">Strains catalogued</div></div>
+                <div className="stat-block"><div className="num">47</div><div className="label">Dispensaries listed</div></div>
+                <div className="stat-block"><div className="num">12k+</div><div className="label">Trip reports</div></div>
+                <div className="stat-block"><div className="num">2</div><div className="label">States covered</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="section">
+            <div className="section-header">
+              <h2 className="section-title">Trending This Week</h2>
+            </div>
+            <div className="strain-grid">
+              {trending.map(s => (
+                <StrainCard key={s.id} strain={s} bookmarks={bookmarks} setBookmarks={setBookmarks} navigate={navigate} toast={toast} />
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===================================================
+       CATALOG PAGE
+    =================================================== */
+    function CatalogPage({ navigate, bookmarks, setBookmarks, route, toast }) {
+      const [search, setSearch] = useState(route.query || '');
+      const [type, setType] = useState('all');
+      const [effect, setEffect] = useState('');
+      const [minThc, setMinThc] = useState(0);
+      const [sortBy, setSortBy] = useState('likes');
+
+      const allEffects = useMemo(() => {
+        const set = new Set();
+        STRAINS.forEach(s => s.effects.forEach(e => set.add(e)));
+        return [...set].sort();
+      }, []);
+
+      const filtered = useMemo(() => {
+        let list = [...STRAINS];
+        if (search) list = list.filter(s => s.name.toLowerCase().includes(search.toLowerCase()) || s.description.toLowerCase().includes(search.toLowerCase()));
+        if (type !== 'all') list = list.filter(s => s.type === type);
+        if (effect) list = list.filter(s => s.effects.includes(effect));
+        if (minThc > 0) list = list.filter(s => s.thc >= minThc);
+        if (sortBy === 'likes') list.sort((a, b) => b.likeCount - a.likeCount);
+        else if (sortBy === 'thc') list.sort((a, b) => b.thc - a.thc);
+        else list.sort((a, b) => a.name.localeCompare(b.name));
+        return list;
+      }, [search, type, effect, minThc, sortBy]);
+
+      function clearFilters() {
+        setSearch(''); setType('all'); setEffect(''); setMinThc(0); setSortBy('likes');
+      }
+
+      return (
+        <div className="page">
+          <div className="catalog-layout">
+            <aside className="catalog-sidebar">
+              <div className="filter-card">
+                <div className="filter-title">Filter Strains</div>
+                <div className="filter-group">
+                  <div className="filter-group-label">Search</div>
+                  <input className="filter-input" placeholder="Name or description…" value={search} onChange={e => setSearch(e.target.value)} />
+                </div>
+                <div className="filter-group">
+                  <div className="filter-group-label">Type</div>
+                  <div className="type-tabs">
+                    {['all', 'indica', 'sativa', 'hybrid'].map(t => (
+                      <button key={t} className={`type-tab${type === t ? ' active' : ''}`} onClick={() => setType(t)}>
+                        {t.charAt(0).toUpperCase() + t.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="filter-group">
+                  <div className="filter-group-label">Effect</div>
+                  <select className="filter-input" value={effect} onChange={e => setEffect(e.target.value)}>
+                    <option value="">Any effect</option>
+                    {allEffects.map(e => <option key={e} value={e}>{e}</option>)}
+                  </select>
+                </div>
+                <div className="filter-group">
+                  <div className="filter-group-label">Min THC %</div>
+                  <div className="slider-wrap">
+                    <div className="slider-label"><span>0%</span><span>{minThc}%</span></div>
+                    <input type="range" min="0" max="30" value={minThc} onChange={e => setMinThc(Number(e.target.value))} />
+                  </div>
+                </div>
+                <div className="filter-group">
+                  <div className="filter-group-label">Sort By</div>
+                  <select className="filter-input" value={sortBy} onChange={e => setSortBy(e.target.value)}>
+                    <option value="likes">Most Liked</option>
+                    <option value="thc">Highest THC</option>
+                    <option value="alpha">A–Z</option>
+                  </select>
+                </div>
+                <button className="btn btn-ghost w-full btn-sm" onClick={clearFilters}>Clear Filters</button>
+              </div>
+            </aside>
+            <main>
+              <div className="results-header">
+                <span className="results-count">{filtered.length} strain{filtered.length !== 1 ? 's' : ''} found</span>
+              </div>
+              {filtered.length === 0 ? (
+                <div className="empty-library" style={{ padding: '3rem 0' }}>
+                  <div className="empty-icon">🔍</div>
+                  <h2>No strains match your filters</h2>
+                  <p>Try adjusting your search or clearing filters.</p>
+                </div>
+              ) : (
+                <div className="strain-grid">
+                  {filtered.map(s => (
+                    <StrainCard key={s.id} strain={s} bookmarks={bookmarks} setBookmarks={setBookmarks} navigate={navigate} toast={toast} />
+                  ))}
+                </div>
+              )}
+            </main>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===================================================
+       STRAIN DETAIL PAGE
+    =================================================== */
+    function StrainDetailPage({ strainId, navigate, bookmarks, setBookmarks, toast }) {
+      const strain = STRAINS.find(s => s.id === strainId);
+      const [liked, setLiked] = useState(false);
+      const [reportRating, setReportRating] = useState(0);
+      const [reportMethod, setReportMethod] = useState('flower');
+      const [reportNote, setReportNote] = useState('');
+      const [reports, setReports] = useState(TRIP_REPORTS.filter(r => r.strainId === strainId));
+
+      const isBookmarked = bookmarks.has(strainId);
+      function toggleBookmark() {
+        const next = new Set(bookmarks);
+        if (isBookmarked) { next.delete(strainId); toast('Removed from library'); }
+        else { next.add(strainId); toast('Saved to library ✓'); }
+        setBookmarks(next);
+      }
+
+      function submitReport(e) {
+        e.preventDefault();
+        if (!reportNote.trim() || reportRating === 0) return;
+        const newReport = {
+          id: `tr-new-${Date.now()}`,
+          strainId,
+          userId: MOCK_USER.id,
+          username: MOCK_USER.username,
+          rating: reportRating,
+          effects: strain.effects.slice(0, 2),
+          method: reportMethod,
+          note: reportNote,
+          upvotes: 0,
+          downvotes: 0,
+          createdAt: new Date().toISOString().slice(0, 10),
+        };
+        setReports([newReport, ...reports]);
+        setReportNote('');
+        setReportRating(0);
+        toast('Trip report submitted! ✓');
+      }
+
+      if (!strain) {
+        return (
+          <div className="page detail-page">
+            <button className="back-btn" onClick={() => navigate({ page: 'catalog' })}>← Back to Strains</button>
+            <p className="text-muted">Strain not found.</p>
+          </div>
+        );
+      }
+
+      const dispensaries = DISPENSARIES.filter(d => strain.dispensaryIds.includes(d.id));
+      const maxTerpPct = Math.max(...strain.terpenes.map(t => t.pct));
+
+      return (
+        <div className="page">
+          <div className="detail-page">
+            <button className="back-btn" onClick={() => navigate({ page: 'catalog' })}>← Back to Strains</button>
+
+            <div className="detail-hero">
+              <div className="detail-hero-main">
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <span className={typeBadgeClass(strain.type)}>{strain.type}</span>
+                  <span className="badge badge-teal" style={{ fontSize: '0.65rem' }}>{strain.chemotype}</span>
+                </div>
+                <h1 className="detail-name">{strain.name}</h1>
+                <p className="detail-desc">{strain.description}</p>
+                <div className="detail-actions">
+                  <button
+                    className={`btn ${liked ? 'btn-danger' : 'btn-secondary'}`}
+                    onClick={() => { setLiked(!liked); toast(liked ? 'Removed like' : 'Liked!'); }}
+                  >
+                    {liked ? '♥' : '♡'} {(strain.likeCount + (liked ? 1 : 0)).toLocaleString()}
+                  </button>
+                  <button
+                    className={`btn ${isBookmarked ? 'btn-amber' : 'btn-secondary'}`}
+                    onClick={toggleBookmark}
+                  >
+                    {isBookmarked ? '♥ Saved' : '♡ Save'}
+                  </button>
+                </div>
+              </div>
+
+              <div className="detail-hero-sidebar">
+                <div className="sidebar-section">
+                  <div className="sidebar-label">Potency</div>
+                  <div className="potency-bar-wrap">
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text2)', marginBottom: '0.2rem' }}>THC · <span style={{ fontFamily: 'DM Mono', color: 'var(--text)' }}>{strain.thc}%</span></div>
+                    <div className="potency-bar-bg">
+                      <div className="potency-bar-fill" style={{ width: `${(strain.thc / 35) * 100}%`, background: strain.color }} />
+                    </div>
+                  </div>
+                  <div className="potency-bar-wrap">
+                    <div style={{ fontSize: '0.78rem', color: 'var(--text2)', marginBottom: '0.2rem' }}>CBD · <span style={{ fontFamily: 'DM Mono', color: 'var(--text)' }}>{strain.cbd}%</span></div>
+                    <div className="potency-bar-bg">
+                      <div className="potency-bar-fill" style={{ width: `${(strain.cbd / 25) * 100}%`, background: 'var(--teal)' }} />
+                    </div>
+                  </div>
+                </div>
+                <div className="sidebar-section">
+                  <div className="sidebar-label">Effects</div>
+                  <div className="tag-cloud">
+                    {strain.effects.map(e => <span key={e} className="effect-tag">{e}</span>)}
+                  </div>
+                </div>
+                <div className="sidebar-section">
+                  <div className="sidebar-label">Flavors</div>
+                  <div className="tag-cloud">
+                    {strain.flavors.map(f => <span key={f} className="terpene-pill">{f}</span>)}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Terpene Profile */}
+            <div className="section-card">
+              <h2>Terpene Profile</h2>
+              {strain.terpenes.map(t => (
+                <div key={t.name} className="terpene-row">
+                  <div>
+                    <div className="terpene-name">{t.name}</div>
+                    <div className="terpene-effect">{t.effect}</div>
+                  </div>
+                  <div className="terpene-bar-bg">
+                    <div className="terpene-bar-fill" style={{ width: `${(t.pct / maxTerpPct) * 100}%`, background: strain.color }} />
+                  </div>
+                  <div className="terpene-pct">{t.pct.toFixed(2)}%</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Lineage */}
+            <div className="section-card">
+              <h2>Genetic Lineage</h2>
+              <div className="lineage-tree">
+                <div className="lineage-parents">
+                  {strain.lineage.mother ? (
+                    <div className="lineage-node"><div style={{ fontSize: '0.65rem', color: 'var(--text3)', marginBottom: '0.2rem' }}>Mother</div>{strain.lineage.mother}</div>
+                  ) : (
+                    <div className="lineage-node unknown">Unknown lineage</div>
+                  )}
+                  {strain.lineage.father ? (
+                    <div className="lineage-node"><div style={{ fontSize: '0.65rem', color: 'var(--text3)', marginBottom: '0.2rem' }}>Father</div>{strain.lineage.father}</div>
+                  ) : (
+                    <div className="lineage-node unknown">Landrace / Unknown</div>
+                  )}
+                </div>
+                <div className="lineage-connector">→</div>
+                <div className="lineage-node offspring" style={{ borderColor: strain.color }}>
+                  <div style={{ fontSize: '0.65rem', color: 'var(--text3)', marginBottom: '0.2rem' }}>Offspring</div>
+                  {strain.name}
+                </div>
+              </div>
+            </div>
+
+            {/* Lab Certificate */}
+            <div className="section-card">
+              <h2>Lab Certificate of Analysis</h2>
+              <div style={{ fontSize: '0.82rem', color: 'var(--text3)', marginBottom: '1rem' }}>
+                {strain.labData.lab} · Tested {strain.labData.date}
+              </div>
+              <div className="lab-grid">
+                {strain.labData.cannabinoids.map(c => (
+                  <div key={c.name} className="lab-cell">
+                    <div className="lab-cell-name">{c.name}</div>
+                    <div className="lab-cell-val">{c.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Dispensary Availability */}
+            <div className="section-card">
+              <h2>In Stock Near You</h2>
+              {dispensaries.map(d => (
+                <div key={d.id} className="dispensary-row">
+                  <div className="dispensary-row-info">
+                    <div className="dispensary-row-name">{d.name}</div>
+                    <div className="dispensary-row-meta">{d.city}, {d.state} · {d.hours}</div>
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <span className="rating">★ {d.rating}</span>
+                    <button className="btn btn-secondary btn-sm" onClick={() => toast('Opening directions…')}>Get Directions</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Trip Reports */}
+            <div className="section-card">
+              <h2>Trip Reports</h2>
+              <div className="report-form">
+                <div style={{ fontSize: '0.9rem', fontWeight: 600, color: 'var(--text)', marginBottom: '1rem' }}>Share your experience</div>
+                <div className="form-group">
+                  <label className="form-label">Rating</label>
+                  <div className="star-select">
+                    {[1,2,3,4,5].map(n => (
+                      <button key={n} className={`star-btn${n <= reportRating ? ' lit' : ''}`} onClick={() => setReportRating(n)}>★</button>
+                    ))}
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Method</label>
+                  <div className="method-select">
+                    {['flower','vape','edible','concentrate','other'].map(m => (
+                      <button key={m} className={`method-btn${reportMethod === m ? ' active' : ''}`} onClick={() => setReportMethod(m)}>{m}</button>
+                    ))}
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Your notes</label>
+                  <textarea
+                    className="form-textarea"
+                    rows="3"
+                    placeholder="Describe your experience…"
+                    value={reportNote}
+                    onChange={e => setReportNote(e.target.value)}
+                  />
+                </div>
+                <button className="btn btn-primary" onClick={submitReport}>Submit Report</button>
+              </div>
+              {reports.map(r => (
+                <div key={r.id} className="trip-report">
+                  <div className="report-header">
+                    <span className="report-user">@{r.username}</span>
+                    <span className="stars">{stars(r.rating)}</span>
+                    <span className="badge badge-accent" style={{ fontSize: '0.65rem' }}>{r.method}</span>
+                    <span className="report-meta">{r.createdAt}</span>
+                  </div>
+                  <div className="report-note">{r.note}</div>
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    <button className="vote-btn" onClick={() => toast('Upvoted!')}>▲ {r.upvotes}</button>
+                    <button className="vote-btn" onClick={() => toast('Downvoted')}>▼ {r.downvotes}</button>
+                    <div className="terpene-pills" style={{ marginLeft: '0.25rem' }}>
+                      {r.effects.map(e => <span key={e} className="effect-tag">{e}</span>)}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===================================================
+       FINDER PAGE
+    =================================================== */
+    function FinderPage({ navigate }) {
+      const [stateFilter, setStateFilter] = useState('all');
+      const filtered = stateFilter === 'all' ? DISPENSARIES : DISPENSARIES.filter(d => d.state === stateFilter);
+
+      return (
+        <div className="page">
+          <div className="finder-page">
+            <div style={{ marginBottom: '1.5rem' }}>
+              <h1 style={{ fontFamily: 'DM Serif Display', fontStyle: 'italic', fontSize: '2rem', color: 'var(--text)', marginBottom: '0.3rem' }}>Dispensary Finder</h1>
+              <p style={{ color: 'var(--text2)', fontSize: '0.9rem' }}>PNW-only licensed dispensaries — Washington & Oregon.</p>
+            </div>
+            <div className="map-placeholder">
+              <div className="map-icon">🗺️</div>
+              <p>Interactive map — coming in V2</p>
+              <p style={{ fontSize: '0.72rem' }}>Powered by Mapbox</p>
+            </div>
+            <div className="state-filter">
+              {[['all','All States'],['WA','Washington'],['OR','Oregon']].map(([val, label]) => (
+                <button
+                  key={val}
+                  className={`type-tab${stateFilter === val ? ' active' : ''}`}
+                  onClick={() => setStateFilter(val)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <div className="dispensary-grid">
+              {filtered.map(d => {
+                const strains = STRAINS.filter(s => d.strainIds.includes(s.id));
+                return (
+                  <div key={d.id} className="dispensary-card">
+                    <div className="dispensary-header">
+                      <div>
+                        <div className="dispensary-name">{d.name}</div>
+                        <div className="dispensary-meta">{d.address}, {d.city} {d.state}</div>
+                      </div>
+                      <span className="rating">★ {d.rating}</span>
+                    </div>
+                    <div className="dispensary-meta">{d.hours}</div>
+                    <div className="dispensary-meta" style={{ marginTop: '0.25rem' }}>{d.phone}</div>
+                    <div className="strain-chips">
+                      {strains.map(s => (
+                        <span key={s.id} className="strain-chip" onClick={() => navigate({ page: 'strain', id: s.id })}>
+                          {s.name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===================================================
+       LIBRARY PAGE
+    =================================================== */
+    function LibraryPage({ navigate, bookmarks, setBookmarks, toast }) {
+      const saved = STRAINS.filter(s => bookmarks.has(s.id));
+      return (
+        <div className="page">
+          <div className="library-page">
+            <div className="library-header">
+              <h1>Your Library</h1>
+              <p style={{ color: 'var(--text2)', fontSize: '0.9rem' }}>{saved.length} saved strain{saved.length !== 1 ? 's' : ''}</p>
+            </div>
+            <div className="premium-nudge">
+              <span className="nudge-icon">✦</span>
+              <div className="nudge-text">
+                <h3>Unlock Smart Folders with Premium</h3>
+                <p>Organize strains by mood, time of day, or custom labels. $7/month.</p>
+              </div>
+              <button className="btn btn-amber btn-sm" onClick={() => navigate({ page: 'premium' })}>Upgrade</button>
+            </div>
+            {saved.length === 0 ? (
+              <div className="empty-library">
+                <div className="empty-icon">📚</div>
+                <h2>Your library is empty</h2>
+                <p>Save strains from the catalog to build your collection.</p>
+                <button className="btn btn-primary mt-2" onClick={() => navigate({ page: 'catalog' })}>Browse Strains</button>
+              </div>
+            ) : (
+              <div className="strain-grid">
+                {saved.map(s => (
+                  <StrainCard key={s.id} strain={s} bookmarks={bookmarks} setBookmarks={setBookmarks} navigate={navigate} toast={toast} />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    /* ===================================================
+       EXPLORE PAGE
+    =================================================== */
+    function ExplorePage({ navigate }) {
+      return (
+        <div className="page">
+          <div className="explore-page">
+            <div style={{ marginBottom: '2rem' }}>
+              <h1 style={{ fontFamily: 'DM Serif Display', fontStyle: 'italic', fontSize: '2rem', color: 'var(--text)', marginBottom: '0.3rem' }}>Explore</h1>
+              <p style={{ color: 'var(--text2)', fontSize: '0.9rem' }}>Science, stories, and strain spotlights from the Pacific Northwest.</p>
+            </div>
+            <div className="media-grid">
+              {MEDIA_ITEMS.map(item => (
+                <div key={item.id} className="media-card">
+                  <div className="media-thumb" style={{ fontSize: '3rem' }}>{item.thumb}</div>
+                  <div className="media-body">
+                    <div className="media-category">{item.category}</div>
+                    <div className="media-title">{item.title}</div>
+                    <div className="media-meta">{item.date}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginBottom: '1rem' }}>
+              <h2 className="section-title" style={{ fontFamily: 'DM Serif Display', fontStyle: 'italic', fontSize: '1.4rem', color: 'var(--text)' }}>PNW Strain Spotlight</h2>
+            </div>
+            <div className="spotlight-scroll">
+              {STRAINS.map(s => (
+                <div key={s.id} className="spotlight-pill" onClick={() => navigate({ page: 'strain', id: s.id })}>
+                  <div className="pill-name">{s.name}</div>
+                  <div className="pill-sub" style={{ color: 'var(--text3)' }}>{s.type} · {s.thc}% THC</div>
+                  <div style={{ marginTop: '0.35rem', display: 'flex', gap: '0.25rem', flexWrap: 'wrap' }}>
+                    <span className={typeBadgeClass(s.type)} style={{ fontSize: '0.6rem' }}>{s.type}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===================================================
+       PREMIUM PAGE
+    =================================================== */
+    function PremiumPage() {
+      const features = [
+        { icon: '📁', title: 'Smart Folders', desc: 'Organize your strain library by mood, time of day, or any custom label. Drag and drop.' },
+        { icon: '🔔', title: 'Strain Alerts', desc: 'Get notified when a saved strain comes back in stock at a nearby dispensary.' },
+        { icon: '📊', title: 'Consumption Log', desc: 'Track your sessions over time. See patterns in what works best for you.' },
+        { icon: '📥', title: 'Export Lab Data', desc: 'Download full COA PDFs for any strain in the catalog. Shareable, printable.' },
+        { icon: '🗺️', title: 'Live Inventory Map', desc: 'See real-time stock across all PNW dispensaries on a live interactive map.' },
+        { icon: '🧬', title: 'Genetic Deep Dives', desc: 'Access extended lineage reports and full terpene breakdowns for every strain.' },
+      ];
+
+      return (
+        <div className="page">
+          <div className="premium-page">
+            <div className="premium-hero">
+              <div className="hero-eyebrow" style={{ background: 'rgba(212,168,83,.1)', border: '1px solid rgba(212,168,83,.25)', color: 'var(--amber)' }}>
+                Untapped Market Premium
+              </div>
+              <h1>The full picture,<br /><em>at your fingertips.</em></h1>
+              <p>Go deeper than any other cannabis platform. Premium unlocks the features that serious PNW consumers actually need.</p>
+            </div>
+            <div className="premium-layout">
+              <div>
+                <div className="feature-list">
+                  {features.map(f => (
+                    <div key={f.title} className="feature-item">
+                      <div className="feature-icon">{f.icon}</div>
+                      <div>
+                        <div className="feature-title">{f.title}</div>
+                        <div className="feature-desc">{f.desc}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="section-card" style={{ marginTop: '2rem' }}>
+                  <div style={{ fontFamily: 'DM Serif Display', fontStyle: 'italic', fontSize: '1.2rem', color: 'var(--text)', marginBottom: '1rem' }}>Free vs Premium</div>
+                  <table className="compare-table">
+                    <thead>
+                      <tr>
+                        <th>Feature</th>
+                        <th>Free</th>
+                        <th style={{ color: 'var(--amber)' }}>Premium</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ['Strain Catalog', true, true],
+                        ['Dispensary Finder', true, true],
+                        ['Basic Library (saves)', true, true],
+                        ['Trip Reports', true, true],
+                        ['Smart Folders', false, true],
+                        ['Strain Alerts', false, true],
+                        ['Consumption Log', false, true],
+                        ['COA PDF Export', false, true],
+                        ['Live Inventory Map', false, true],
+                        ['Genetic Deep Dives', false, true],
+                      ].map(([label, free, premium]) => (
+                        <tr key={label}>
+                          <td>{label}</td>
+                          <td>{free ? <span className="check">✓</span> : <span className="cross">—</span>}</td>
+                          <td>{premium ? <span className="check">✓</span> : <span className="cross">—</span>}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div>
+                <div className="pricing-card">
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--amber)', marginBottom: '0.75rem' }}>Premium Plan</div>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.25rem', marginBottom: '0.25rem' }}>
+                    <span className="pricing-amount">$7</span>
+                    <span className="pricing-period">/month</span>
+                  </div>
+                  <div className="pricing-period" style={{ marginBottom: '1.25rem' }}>or $63/year — 2 months free</div>
+                  <button className="btn btn-amber w-full" style={{ marginBottom: '0.75rem' }}>Start 7-Day Free Trial</button>
+                  <button className="btn btn-ghost w-full btn-sm">Continue with Free</button>
+                  <hr className="pricing-divider" />
+                  <ul className="pricing-features">
+                    <li>All 6 premium features</li>
+                    <li>Cancel anytime</li>
+                    <li>Works on web + mobile (V2)</li>
+                    <li>Priority support</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    /* ===================================================
+       APP ROUTER
+    =================================================== */
+    function App() {
+      const [route, setRoute] = useState({ page: 'home' });
+      const [bookmarks, setBookmarks] = useState(new Set());
+      const [toasts, setToasts] = useState([]);
+
+      function navigate(newRoute) {
+        setRoute(newRoute);
+        window.scrollTo(0, 0);
+      }
+
+      function addToast(msg) {
+        const id = Date.now();
+        setToasts(prev => [...prev, { id, msg, fading: false }]);
+        setTimeout(() => {
+          setToasts(prev => prev.map(t => t.id === id ? { ...t, fading: true } : t));
+          setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), 350);
+        }, 2500);
+      }
+
+      function renderPage() {
+        const props = { navigate, bookmarks, setBookmarks, toast: addToast, route };
+        switch (route.page) {
+          case 'home': return <HomePage {...props} />;
+          case 'catalog': return <CatalogPage {...props} />;
+          case 'strain': return <StrainDetailPage strainId={route.id} {...props} />;
+          case 'finder': return <FinderPage {...props} />;
+          case 'library': return <LibraryPage {...props} />;
+          case 'explore': return <ExplorePage {...props} />;
+          case 'premium': return <PremiumPage {...props} />;
+          default: return <HomePage {...props} />;
+        }
+      }
+
+      return (
+        <>
+          <Nav route={route} navigate={navigate} />
+          {renderPage()}
+          <ToastContainer toasts={toasts} />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
